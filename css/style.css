@@ -1,3 +1,86 @@
 body {
-  background-color: black;
+  background-color: rgb(56, 56, 56);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
 }
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  padding: 20px 40px;
+  color: #000000;
+  background-color: bisque;
+  margin-right: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.btn:hover {
+  background-color: aliceblue;
+  color:rgb(49, 21, 75);
+
+}
+
+
+
+.progressBars {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+  height: 200px;
+  align-items: center;
+}
+
+ul > li {
+  list-style: none;
+}
+.parentDiv{
+  display: flex;
+  margin: 20px 10px 20px 20px;
+}
+
+.progress {
+  background-color: #301414;
+  border-radius: 20px;
+  height: 30px;
+  width: 300px;
+  position: relative;
+  margin-left: 20px;
+
+}
+
+.progress-bar-1, .progress-bar-2{
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: repeating-linear-gradient(to left, #64640f, #dae128, #f0e288);
+  box-shadow: 0 5px, 5px, -6px #64640f, 0 3px 7px #dae128;
+  border-radius: 20px;
+  color: black;
+  height: 100%;
+  width: 0;
+  transition: 1s ease 0.3s;
+}
+
+.hide {
+  display: none;
+}
+
+
+.flex-div{
+  display: flex;
+  justify-content: space-between;
+}
+
