@@ -5,68 +5,80 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <title>My Tamagotchi</title>
 </head>
 <body>
-
-  <h1>Welcome to Tamagotchi Game</h1>
-
-  <div>
-    <div class="flex-div">
+<div class="main-content">
+  <div class="light-change">
+  <div class="first-Div">
+    <h1>Welcome to Tamagotchi Game</h1>
     <button id="startBtn" class="btn">Start Game</button>
-    <div><p><span id="mins"></span>: <span id="seconds"></span>: <span id="tens"></span></p></div>
   </div>
 
-<div class="parentDiv">
-  <div class="text">Hunger</div>
-    <div class="progress">
-      <div class="progress-bar-1"></div>
+  <div class="flex-div">
+    <div class="flex-column-div">
+    <div class="parentDiv">
+      <div class="text">Hunger</div>
+        <div class="progress">
+          <div class="progress-bar-1"></div>
+        </div>
     </div>
 
-</div>
+    <div class="parentDiv">
+      <div class="text">Energy</div>
+      <div class="progress">
+        <div class="progress-bar-2"></div>
+      </div>
+    </div>
 
-<div class="parentDiv">
-  <div class="text">Energy</div>
-  <div class="progress">
-    <div class="progress-bar-2"></div>
+    <div class="parentDiv">
+      <div class="text">Boredom</div>
+      <div class="progress">
+        <div class="progress-bar-3"></div>
+      </div>
+    </div>
+
+    <div class="parentDiv">
+      <div class="text">Fun</div>
+      <div class="progress">
+        <div class="progress-bar-4"></div>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="display-result">
+    <div class="resultDiv"></div>
+    <div class="age-div">The age of your pet is: <span class="age">1</span></div>
+    </div>
+
+    <div class="container">
+      <div class="buttons">
+        <button id="fbtn" class="btn">Feed</button>
+        <button id="foodStop-btn" class="btn">Stop feeding</button>
+        <button id="sbtn" class="btn">Sleep</button>
+        <button id="btn-stop" class="btn">Stop sleeping</button>
+        <button id="pbtn" class="btn">Play</button>
+        <button id="stopPlay" class="btn">Stop playing</button>
+      </div>
+    </div>
+
+    </div>
+
+    <div class="text">Age: <span class="age1">1</span></div>
+
+    <div class="image">
+      <img src="./img/panda.png" alt="" class="img-1">
+      <img src="./img/pandaEating.png" alt="" class="img-2">
+      <img src="./img/pandaSleeping.png" alt="" class="img-3">
+      <img src="./img/pandaPlaying.png" alt="" class="img-4">
+    </div>
   </div>
-</div>
-
-<div class="parentDiv">
-  <div class="text">Hygiene</div>
-  <div class="progress">
-    <div class="progress-bar-3"></div>
-  </div>
-</div>
-
-
-<div class="parentDiv">
-  <div class="text">Fun</div>
-  <div class="progress">
-    <div class="progress-bar-4"></div>
-  </div>
-</div>
-
-
-
-<div class="container">
-  <div class="buttons">
-    <button id="fbtn" class="btn">Food</button>
-    <button id="sbtn" class="btn">Sleep</button>
-    <button id="btn-stop" class="btn">Stop sleeping</button>
-    <button id="pbtn" class="btn">Play</button>
-    <button id="ibtn" class="btn">Info</button>
-  </div>
-</div>
 
 </div>
-
-
-
-
-
-
-
   <script src="js/app.js"></script>
 </body>
 </html>

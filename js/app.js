@@ -1,185 +1,280 @@
 
 
 class Tamagotchi {
-
-  constructor(name) {
-    this.name = name
-    this.age = 1
-    // this.hunger = hunger
-    // this.energy = energy
-    // this.fun = fun
-    // this.sleepiness = sleepiness
+  constructor() {
+    this.name = "";
+    this.age = 1;
     this.interval;
+    this.seconds = 0;
+    this.tens = 0;
+    this.mins = 0;
+    this.value = 0;
+    this.hungerValue = 0;
+    this.maxValue = 10;
+    this.arr = [];
+  }
 
+  gethungerValue() {
+    return this.hungerValue;
   }
 
 
-
-  starttheGame(){
-    const stGame = document.getElementById("startBtn")
-
-    stGame.addEventListener("click", ()=>{
-      this.getName()
-      stGame.classList.add('hide')
-    })
+  displayResult(result){
+    const resultDiv = document.querySelector(".resultDiv")
+    resultDiv.innerHTML = result
   }
 
+  getAge() {
+    let counter = 0;
+    const age = document.querySelector('.age')
+    const age1 = document.querySelector('.age1')
 
-  hideElement(){
-    // document.querySelector(".show").classList.add("hide")
-    document.getElementById("btn-stop").classList.add("hide")
+    setInterval(() => {
+      if(counter === 35){
+        clearInterval()
+      } else{
+        counter += 1
+        this.age = counter
+        age.innerHTML = this.age
+        age1.innerHTML = this.age
+      }
+
+    }, 9000)
   }
 
-  getName(){
-    this.name = prompt("What is name of your Dinosour: ")
-    return this.name
+  getValue() {
+    return this.value;
   }
 
-  getinfo(){
-    const infoBtn = document.getElementById("ibtn")
-    const newDiv = document.createElement("div")
+  starttheGame() {
+    const stGame = document.getElementById("startBtn");
 
-    infoBtn.addEventListener("click", ()=>{
-      newDiv.innerText = `Name of the player is ${this.name}`
-      document.body.appendChild(newDiv).classList.add("show")
-    })
+    stGame.addEventListener("click", () => {
+      this.getName();
+      this.getinfo()
+      document.querySelector(".img-1").classList.remove("hide");
+      stGame.classList.add("hide");
+    });
+  }
+
+  hideElement() {
+    document.getElementById("btn-stop").classList.add("hide");
+    document.getElementById("foodStop-btn").classList.add("hide");
+    document.querySelector(".img-1").classList.add("hide");
+    document.querySelector(".img-2").classList.add("hide");
+    document.querySelector(".img-3").classList.add("hide");
+    document.querySelector(".img-4").classList.add("hide");
+    document.getElementById("stopPlay").classList.add("hide");
+
+  }
+
+  getName() {
+    this.name = prompt("What is name of your panda: ");
+    return this.name;
+  }
+
+  getinfo() {
+    // const infoBtn = document.getElementById("ibtn");
+    // const newDiv = document.createElement("div");
+    this.displayResult(`Name of the player is ${this.name}`);
+
+  }
+
+  changeWidth() {
+    const progress1 = document.querySelector(".progress-bar-1");
+    const progress2 = document.querySelector(".progress-bar-2");
+  
+    const progress3 = document.querySelector(".progress-bar-3");
+    const progress4 = document.querySelector(".progress-bar-4");
+
+    progress1.style.width = `${(this.hungerValue / this.maxValue) * 100}%`;
+    progress1.innerText = `${Math.ceil((this.hungerValue / this.maxValue) * 100)}%`;
+
+    progress2.style.width = `${(this.value / this.maxValue) * 100}%`;
+    progress2.innerText = `${Math.ceil((this.value / this.maxValue) * 100)}%`;
+
+    progress3.style.width = `${(this.value / this.maxValue) * 100}%`;
+    progress3.innerText = `${Math.ceil((this.value / this.maxValue) * 100)}%`;
+
+    progress4.style.width = `${(this.value / this.maxValue) * 100}%`;
+    progress4.innerText = `${Math.ceil((this.value / this.maxValue) * 100)}%`;
   }
 
 
   getFood() {
-    const foodBtn = document.getElementById("fbtn")
-    const progress = document.querySelector(".progress-bar-2")
+    // let hvalue = 0;
 
-    let finalValue = 0;
-    let maxValue = 10;
+    const foodStopBtn = document.getElementById("foodStop-btn");
+    const foodBtn = document.getElementById("fbtn");
+    let counter = 0
+    let cc = 0
 
-    function changeWidth(){
-      progress.style.width = `${(finalValue / maxValue) * 100}%`
-      progress.innerText = `${Math.ceil((finalValue / maxValue) * 100)}%`
-    }
+    foodBtn.addEventListener("click", () => {
 
-    foodBtn.addEventListener("click", ()=>{
 
-      if(finalValue < maxValue) {
-        finalValue += 2
-        changeWidth()
-      } else if(finalValue === maxValue){
-        alert(`it has 100% of food`)
+      this.interval = setInterval(() => {
+        if (counter == 10){
+          clearInterval()
+        } else {
+          counter += 1
+          cc -= 1
         }
 
+        this.value = counter
+        this.hungerValue = cc
+
+        if (this.value < this.maxValue) {
+          this.value ++;
+          this.changeWidth()
+        } else if (this.finalValue === this.maxValue) {
+          this.displayResult(`Your pet ate enough food`);
+        }
+
+        if (this.hungerValue < this.maxValue || this.hungerValue === this.maxValue) {
+          this.hungerValue--
+          this.hungerValue = 0
+          this.changeWidth();
+         }
+
+      }, 1000);
+
+      document.querySelector(".img-1").classList.add("hide");
+      document.querySelector(".img-2").classList.remove("hide");
+      document.getElementById("fbtn").classList.add("hide");
+      document.getElementById("foodStop-btn").classList.remove("hide");
+    });
+
+    foodStopBtn.addEventListener("click", () => {
+      document.getElementById("fbtn").classList.remove("hide");
+      document.querySelector(".img-1").classList.remove("hide");
+      document.querySelector(".img-2").classList.add("hide");
+      clearInterval(this.interval);
+      document.getElementById("foodStop-btn").classList.add("hide");
+    });
+  }
+
+  ///Get sleep
+
+  getSleep() {
+
+    let counter = 0
+    const buttonstop = document.getElementById("btn-stop");
+    const sleepBtn = document.getElementById("sbtn");
+
+
+    sleepBtn.addEventListener("click", () => {
+      document.querySelector(".light-change").classList.add("dark-light")
+      document.querySelector(".img-3").classList.remove("hide");
+      document.querySelector(".img-1").classList.add("hide");
+
+      this.interval = setInterval(() => {
+        if (counter == 10){
+          clearInterval()
+        } else {
+          counter += 1
+        }
+
+        this.value = counter
+        this.hungerValue = counter
+
+        if (this.value < this.maxValue) {
+          this.value++;
+          this.changeWidth()
+        } else if (this.finalValue === this.maxValue) {
+          this.displayResult(`Your pet has 100% of energy`);
+        }
+
+        if (this.hungerValue < this.maxValue) {
+          this.hungerValue++;
+          this.changeWidth();
+        } else if (this.hungerValue === this.maxValue) {
+          this.displayResult(`Your pet is very hungry`);
+        }
+
+      }, 1000)
+
+
+      document.getElementById("sbtn").classList.add("hide");
+      document.getElementById("btn-stop").classList.remove("hide");
+    });
+
+    buttonstop.addEventListener("click", () => {
+      document.getElementById("sbtn").classList.remove("hide");
+      document.querySelector(".light-change").classList.remove("dark-light")
+      document.querySelector(".img-3").classList.add("hide");
+      document.querySelector(".img-1").classList.remove("hide");
+      clearInterval(this.interval);
+      document.getElementById("btn-stop").classList.add("hide");
+    });
+  }
+
+  startPlay() {
+    let counter = 0
+    const stopPlay = document.getElementById("stopPlay");
+    const startPlay = document.getElementById("pbtn");
+
+
+    startPlay.addEventListener("click", () => {
+      document.querySelector(".img-3").classList.add("hide");
+      document.querySelector(".img-1").classList.add("hide");
+      document.querySelector(".img-4").classList.remove("hide");
+      document.getElementById("pbtn").classList.add("hide");
+      document.getElementById("stopPlay").classList.remove("hide");
+
+      this.interval = setInterval(() => {
+        if (counter == 10){
+          clearInterval()
+        } else {
+          counter += 1
+        }
+
+        this.value = counter
+        this.hungerValue = counter
+
+        if (this.value < this.maxValue) {
+          this.value++;
+          this.changeWidth()
+        } else if (this.finalValue === this.maxValue) {
+          this.displayResult(`Your pet has 100% of energy`);
+        }
+
+        if (this.hungerValue < this.maxValue) {
+          this.hungerValue++;
+          this.changeWidth();
+        } else if (this.hungerValue === this.maxValue) {
+          this.displayResult(`Your pet is very hungry`);
+        }
+
+      }, 1000)
+
+
     })
+
+
+    stopPlay.addEventListener("click", () => {
+      document.getElementById("pbtn").classList.remove("hide");
+      document.getElementById("stopPlay").classList.add("hide");
+      document.querySelector(".img-3").classList.add("hide");
+      document.querySelector(".img-1").classList.remove("hide");
+      document.querySelector(".img-4").classList.add("hide");
+      clearInterval(this.interval);
+
+    });
   }
-
-  getTime(){
-
-
-    
-  }
-
-
-
-getSleep() {
-
-  let seconds = 0;
-  let tens = 0;
-  let mins = 0;
-  let arr = []
-  let value = 0;
-  let hungerValue = 0;
-  let maxValue = 10;
-  const appendTens = document.getElementById("tens");
-  const appendSeconds = document.getElementById("seconds");
-  const appendmins = document.getElementById("mins");
-
-  const buttonstop = document.getElementById("btn-stop");
-  const sleepBtn = document.getElementById("sbtn");
-  const progress2 = document.querySelector(".progress-bar-2");
-  const progress1 = document.querySelector(".progress-bar-1");
-
-  function changeWidth() {
-    progress2.style.width = `${(value / maxValue) * 100}%`;
-    progress2.innerText = `${Math.ceil((value / maxValue) * 100)}%`;
-
-    progress1.style.width = `${(hungerValue / maxValue) * 100}%`;
-    progress1.innerText = `${Math.ceil((hungerValue / maxValue) * 100)}%`;
-  }
-
-    function startTimer() {
-      tens++
-      if(tens < 9) {
-        appendTens.innerHTML = "0" + tens
-      }
-      if(tens > 9){
-        appendTens.innerHTML = tens
-      }
-
-      if(tens > 99){
-        seconds++
-        appendSeconds.innerHTML = "0" + seconds
-        tens = 0
-        appendTens.innerHTML = "0" + 0
-      }
-      if(seconds > 9) {
-        appendSeconds.innerHTML = seconds
-      }
-
-      if(seconds > 60){
-        mins++
-        appendmins.innerHTML = "0" + mins
-        seconds = 0
-        appendSeconds.innerHTML = "0" + 0
-      }
-
-      if(mins > 9) {
-        appendmins.innerHTML = mins
-      }
-      arr.push(seconds)
-      value = arr[arr.length-1]
-      hungerValue = arr[arr.length-1]
-
-      if (value < maxValue) {
-        value += 1
-        changeWidth();
-      } else if (value === maxValue) {
-        alert(`it has 100% of food`);
-      }
-
-
-      if (hungerValue < maxValue) {
-        hungerValue += 2
-        changeWidth();
-      } else if (hungerValue === maxValue) {
-        alert(`Your pet is very hungry`);
-      }
-     }
-
-       sleepBtn.addEventListener("click", () => {
-         this.interval = setInterval(startTimer, 20);
-         document.getElementById("sbtn").classList.add("hide")
-         document.getElementById("btn-stop").classList.remove("hide")
-       });
-
-       buttonstop.addEventListener("click", () => {
-        document.getElementById("sbtn").classList.remove("hide")
-         clearInterval(this.interval);
-         document.getElementById("btn-stop").classList.add("hide")
-       });
-
-
-
-}
-
-
 
 }
 
 const charOne = new Tamagotchi("Dino")
 
-charOne.hideElement()
 charOne.starttheGame()
+charOne.hideElement()
+charOne.getAge()
 charOne.getFood()
 charOne.getinfo()
 charOne.getSleep()
+charOne.startPlay()
+
+console.log(charOne.getValue())
 
 
 
