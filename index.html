@@ -10,15 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <title>My Tamagotchi</title>
 </head>
+
 <body>
 <div class="main-content">
-  <div class="light-change">
+<div class="light-change">
   <div class="first-Div">
     <h1>Welcome to Tamagotchi Game</h1>
     <button id="startBtn" class="btn">Start Game</button>
+    <button id="restartBtn" class="btn">Play Again</button>
   </div>
 
-  <div class="flex-div">
+
+<div class="child-div">
+  <div class="">
     <div class="flex-column-div">
     <div class="parentDiv">
       <div class="text">Hunger</div>
@@ -50,9 +54,17 @@
 
     </div>
 
-    <div class="display-result">
-    <div class="resultDiv"></div>
-    <div class="age-div">The age of your pet is: <span class="age">1</span></div>
+
+
+    </div>
+
+    <div class="image">
+      <img src="./img/panda.png" alt="" class="img-1">
+      <img src="./img/pandaEating.png" alt="" class="img-2">
+      <img src="./img/pandaSleeping.png" alt="" class="img-3">
+      <img src="./img/pandaPlaying.png" alt="" class="img-4">
+      <img src="./img/sad.png" alt="" class="img-5">
+      <img src="./img/skeleton.png" alt="" class="img-6">
     </div>
 
     <div class="container">
@@ -65,18 +77,15 @@
         <button id="stopPlay" class="btn">Stop playing</button>
       </div>
     </div>
-
-    </div>
-
-    <div class="text">Age: <span class="age1">1</span></div>
-
-    <div class="image">
-      <img src="./img/panda.png" alt="" class="img-1">
-      <img src="./img/pandaEating.png" alt="" class="img-2">
-      <img src="./img/pandaSleeping.png" alt="" class="img-3">
-      <img src="./img/pandaPlaying.png" alt="" class="img-4">
+    <div class="display-result">
+      <div class="resultDiv"></div>
+      <div class="age-div">. The age of your pet is: <span class="age">1</span></div>
     </div>
   </div>
+
+  
+
+</div>
 
 </div>
   <script src="js/app.js"></script>

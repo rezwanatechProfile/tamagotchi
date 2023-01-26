@@ -3,7 +3,6 @@ body {
   font-size: 20px;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
-  
 }
 
 .dark-light {
@@ -18,10 +17,9 @@ body {
 }
 
 .main-content {
-  height: 100vh;
+  height: 98vh;
   background-color: #2c2a2a;
 }
-
 
 .main-content::before {
   content: "";
@@ -42,14 +40,10 @@ h1{
   position: relative;
 }
 
-/* .light-change {
-  background-color: hsla(50, 33%, 25%, 1.00);
-  opacity: 0.85;
-} */
 
 .container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 
 }
 .first-Div {
@@ -59,10 +53,10 @@ h1{
   margin-bottom: 20px;
 }
 
-.buttons {
+/* .buttons {
   display: flex;
   flex-direction: column;
-}
+} */
 
 .btn {
   padding: 20px 80px;
@@ -72,6 +66,7 @@ h1{
   font-weight: bold;
   margin-bottom: 8px;
   border-radius: 20px;
+  font-size: 25px;
 }
 
 .btn:hover {
@@ -94,19 +89,20 @@ ul > li {
 
 .flex-column-div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
+  justify-content: center;
 }
 
 .parentDiv{
   display: flex;
-  margin: 20px 10px 20px 20px;
+  margin: 5px 10px 5px 20px;
 }
 
 .progress {
-  background-color: #bfb5b5;
-  border: 2px solid #000000;
-  border-radius: 20px;
+  background-color: #20341e;
+  border: 5px solid #000000;
+  border-radius: 2px;
   height: 40px;
   width: 200px;
   position: relative;
@@ -114,25 +110,47 @@ ul > li {
 
 }
 
-.progress-bar-1, .progress-bar-2{
+.progress-bar-1, .progress-bar-2,
+.progress-bar-3, .progress-bar-4 {
   position: absolute;
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-image: repeating-linear-gradient(to left, #64640f, #dae128, #f0e288);
   box-shadow: 0 5px, 5px, -6px #64640f, 0 3px 7px #dae128;
-  border-radius: 20px;
+  border-radius: 2px;
   color: rgb(109, 119, 60);
   height: 100%;
   width: 0;
   transition: 1s ease 0.3s;
+
+}
+
+.btn:disabled {
+  color: rgb(129,126,126);
+  background-color: rgb(197,196,196);
+  border: 2px solid rgb(149,147,147);
 }
 
 .hide {
   display: none;
 }
 
+.display-result {
+  background-color: #2c2a2a;
+  font-family: sans-serif;
+  padding: 20px;
+  opacity: 0.8;
+  position: relative;
+  font-size: 25px;
+  text-align: left;
+  line-height: 35px;
+  max-width: 35%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 
 .flex-div{
   display: flex;
@@ -145,15 +163,19 @@ ul > li {
   max-width: 100%;
   display: flex;
   position: relative;
+  height: 400px;
+  padding-bottom: 50px;
 }
 
-.img-1, .img-2, .img-3 {
-  max-width: 20%;
+.img-1, .img-2, .img-3, .img-5 {
+  max-width: 15%;
   position: absolute;
   animation: move 3s linear;
   animation-direction: alternate;
   animation-iteration-count: infinite;
 }
+
+
 
 .img-4 {
   max-width: 20%;
@@ -162,7 +184,6 @@ ul > li {
   animation: play 3s linear;
   animation-direction: alternate;
   animation-iteration-count: infinite;
-
 
 }
 
@@ -180,3 +201,52 @@ ul > li {
   0% {left: 0%; transform: translateY(-10px);}
 }
 
+
+.img-6 {
+  max-width: 20%;
+  margin: 0 auto;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation: flash 5s infinite;
+
+}
+
+@keyframes flash {
+  0%, 50%, 100% {
+    opacity:1;
+    transform: scale(2);
+  }
+
+  25% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+
+  75% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}
+
+#restartBtn {
+  border: 5px solid #c74b0e;
+  background-color: #000000;
+  animation-duration: 2s;
+  animation-fill-mode: both;
+  animation: re-btn 5s infinite;
+}
+
+@keyframes re-btn {
+  0%, 50%, 100% {
+    opacity:1;
+  }
+
+  25% {
+    opacity: 0.4;
+  }
+
+  75% {
+    opacity: 0.8;
+  }
+
+}
