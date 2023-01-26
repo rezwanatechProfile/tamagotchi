@@ -15,6 +15,10 @@
 <div class="main-content">
 <div class="light-change">
   <div class="first-Div">
+    <div class="status">
+      <p>Name: <span class="name"></span></p>
+      <p>Stage: <span class="stage"></span></p>
+     </div>
     <h1>Welcome to Tamagotchi Game</h1>
     <button id="startBtn" class="btn">Start Game</button>
     <button id="restartBtn" class="btn">Play Again</button>
@@ -24,11 +28,16 @@
       <input type="text" id="userInput1" class="inputUser" name="text">
       <input type="button" onclick="charOne.getName()" value="Go" class="btn-sm">
     </form>
+   <div class="colored-box">
+    <p class="">Welcome to Tamagotchi game. Feed, play and have fun with panda. If you hit 100% of Hunger, boredom or sleepiness, your panda will die. If you hit the highest level of fun and energy, your panda will win the game. If panda hits 10 years of his age, then he become adult to have partner.</p>
+   </div>
 
-    <audio controls autoplay muted>
+
+
+
+    <audio autoplay controls loop id="audio">
       <source src="../assets/comedy-detective-127185.mp3" type="audio/mpeg">
     </audio>
-
   </div>
 
 

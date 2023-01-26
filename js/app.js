@@ -17,26 +17,33 @@ class Tamagotchi {
     return this.hungerValue;
   }
 
+  getFunValue() {
+    return this.funValue;
+  }
+
+  getvalueEnergy() {
+    return this.value;
+  }
+
+  getboredomValue() {
+    return this.boredom;
+  }
+
+  getSleepValue() {
+    return this.sleepValue;
+  }
+
+
+  getmaxValue(){
+    return this.maxValue
+  }
+
   displayResult(result) {
     const resultDiv = document.querySelector(".resultDiv");
     resultDiv.innerHTML = result;
   }
 
-  getAge() {
-    let counter = 0;
-    const age = document.querySelector(".age");
-    const age1 = document.querySelector(".age1");
 
-    setInterval(() => {
-      if (counter === 35) {
-        clearInterval();
-      } else {
-        counter += 1;
-        this.age = counter;
-        age.innerHTML = this.age;
-      }
-    }, 1500);
-  }
 
   getValue() {
     return this.value;
@@ -44,6 +51,7 @@ class Tamagotchi {
 
   hideElement() {
     document.getElementById("btn-stop").classList.add("hide");
+    document.getElementById("audio").classList.add("hide");
     document.getElementById("foodStop-btn").classList.add("hide");
     document.querySelector(".img-1").classList.add("hide");
     document.querySelector(".img-2").classList.add("hide");
@@ -63,27 +71,55 @@ class Tamagotchi {
     stGame.addEventListener("click", () => {
       document.querySelector(".input-form").classList.remove("hide")
       stGame.classList.add("hide");
-
+      document.querySelector(".colored-box").classList.add("hide");
     });
+  }
+
+  getAge() {
+    let counter = 0;
+    const age = document.querySelector(".age");
+    const stage = document.querySelector(".stage");
+
+    setInterval(() => {
+      if (counter === 30) {
+        clearInterval();
+      } else {
+        counter += 1;
+        this.age = counter;
+        age.innerHTML = this.age;
+      }
+
+      if(this.age <= 5){
+        stage.innerHTML = "Child"
+      } else if(this.age > 5 && this.age < 10){
+        stage.innerHTML = "Teenager"
+      } else if(this.age > 10 && this.age < 20){
+        stage.innerHTML = "Adult"
+      } else if(this.age > 20 && this.age <= 30){
+        stage.innerHTML = "Too old"
+        // this.petDied()
+      }
+
+    }, 1700);
+
+
   }
 
   getName() {
     this.name = document.getElementById("userInput1").value
-    console.log(this.name)
+    const nameOfPanda = document.querySelector(".name")
 
-    this.displayResult(`Name of the panda player is ${this.name}.`)
+    this.displayResult(`Hello my name is ${this.name}.`)
     this.getAge();
     this.changeWidth();
     document.querySelector(".img-1").classList.remove("hide");
     document.querySelector(".child-div").classList.remove("hide");
     document.querySelector(".input-form").classList.add("hide")
+    document.getElementById("audio").classList.remove("hide");
+    nameOfPanda.innerHTML = this.name
     return this.name;
 
   }
-
-
-
-
 
 
   resetButton = () => {
@@ -136,31 +172,33 @@ class Tamagotchi {
     let counter = 0;
     foodBtn.addEventListener("click", () => {
       this.interval = setInterval(() => {
-        if (counter === 100) {
+        if (counter === 10) {
           clearInterval();
         } else {
           counter += 1;
-          this.funValue = counter;
-          this.hungerValue = counter;
-          this.value = counter;
-          this.boredom = counter;
+          // this.funValue = counter;
+          // this.value = counter;
+          // this.sleepValue = counter
+
         }
 
         //decrease fun
-        if (this.funValue < this.maxValue) {
-          this.funValue++;
-          this.changeWidth();
-          this.displayResult(
-            `${this.name} is having fun while eating. To increase fun he needs to play.`
-          );
-        } else if (this.funValue === this.maxValue) {
-          this.getWinner();
-          this.displayResult(`${this.name} is satisfied with the food.`);
+        if (counter < this.maxValue) {
+          if(counter === this.funValue || this.funValue < 10){
+            this.funValue++;
+            this.changeWidth();
+            this.displayResult(
+            `${this.name} is having fun while eating. To increase fun he needs to play.`)
+          }
+          else if(this.funValue === this.maxValue) {
+            this.getWinner();
+            this.displayResult(`${this.name} is satisfied with the food.`);
+          }
         }
 
         //decrease hunger
-        if (this.hungerValue < this.maxValue) {
-          while (this.hungerValue > 1) {
+        if (counter < this.maxValue) {
+          if(counter === this.hungerValue || this.hungerValue > 0) {
             this.hungerValue--;
           }
           this.changeWidth();
@@ -168,47 +206,54 @@ class Tamagotchi {
         }
 
         //increase energy
-        if (this.value < this.maxValue) {
-          this.value++;
-          this.changeWidth();
-          this.displayResult(
-            `${this.name} is gaining energy. Ready sleep or play.`
-          );
-        } else if (this.value === this.maxValue) {
-          this.getWinner();
-          this.displayResult(
-            `${this.name} has gained energy from food. Ready to play another game`
-          );
+        if (counter < this.maxValue) {
+          if(counter === this.value || this.value < 10){
+            this.value++;
+            this.changeWidth();
+            this.displayResult(`${this.name} is gaining energy. Ready sleep or play.`)
+          }
+
+          else if (this.value === this.maxValue) {
+            this.getWinner();
+            this.displayResult(
+              `${this.name} has gained energy from food. Ready to play another game`
+            );
+          }
         }
         //increase boredom
-        if (this.boredom < this.maxValue) {
-          while (this.boredom > 1) {
-            this.boredom -= 0.5;
+        if (counter < this.maxValue) {
+          if(counter === this.boredom || this.boredom > 0) {
+            this.boredom --;
           }
           this.changeWidth();
           this.displayResult(`${this.name} is having fun eating food.`);
         }
 
         //increase sleepiness
-
-        if (this.sleepValue < this.maxValue) {
-          this.sleepValue += 0.1;
+        if (counter < this.maxValue) {
+          if(counter === this.sleepValue || this.sleepValue < 10){
+          this.sleepValue += 0.8;
           this.changeWidth();
           this.displayResult(
             `${this.name} is feeling sleepy.`
-          );
-        } else if (this.sleepValue === this.maxValue) {
-          this.petDied();
-          this.displayResult(
-            `${this.name} is very sleepy. Turn the light off.`
-          );
+          )}
+          else if (this.sleepValue === this.maxValue) {
+            this.petDied();
+            this.displayResult(
+              `${this.name} is very sleepy. Turn the light off.`
+            );
+          }
+
         }
+        return(`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`)
       }, 1000);
 
       document.querySelector(".img-1").classList.add("hide");
       document.querySelector(".img-2").classList.remove("hide");
       document.getElementById("fbtn").classList.add("hide");
       document.getElementById("foodStop-btn").classList.remove("hide");
+      document.getElementById("sbtn").disabled = true;
+      document.getElementById("pbtn").disabled = true;
     });
 
     foodStopBtn.addEventListener("click", () => {
@@ -217,6 +262,8 @@ class Tamagotchi {
       document.querySelector(".img-2").classList.add("hide");
       clearInterval(this.interval);
       document.getElementById("foodStop-btn").classList.add("hide");
+      document.getElementById("sbtn").disabled = false;
+      document.getElementById("pbtn").disabled = false;
     });
   }
 
@@ -233,59 +280,71 @@ class Tamagotchi {
       document.querySelector(".img-1").classList.add("hide");
       document.getElementById("sbtn").classList.add("hide");
       document.getElementById("btn-stop").classList.remove("hide");
+      document.getElementById("fbtn").disabled = true;
+      document.getElementById("pbtn").disabled = true;
 
       this.interval = setInterval(() => {
-        if (counter === 100) {
+        if (counter === 10) {
           clearInterval();
         } else {
           counter += 1;
-          this.funValue = counter;
-          this.hungerValue = counter;
-          this.value = counter;
-          this.boredom = counter;
+          // this.hungerValue = counter;
+          // this.value = counter;
+          // this.boredom = counter
         }
         //decrease fun
-        if (this.funValue < this.maxValue) {
-          while (this.funValue > 1) {
-            this.funValue -= 0.5;
+        if (counter < this.maxValue) {
+          if(this.funValue > 0) {
+            this.funValue--;
           }
           this.changeWidth();
           this.displayResult(`${this.name} needs to play.`);
         }
 
         //increase hunger
-        if (this.hungerValue < this.maxValue) {
-          this.hungerValue++;
-          this.changeWidth();
-          this.displayResult(`${this.name} is feeling hungry`);
-        } else if (this.hungerValue === this.maxValue) {
-          this.petDied();
-          this.displayResult(`${this.name} is very hungry. Feed him.`);
+        if (counter < this.maxValue) {
+          if(counter === this.hungerValue || this.hungerValue < 10){
+            this.hungerValue++;
+            this.changeWidth();
+            this.displayResult(`${this.name} is feeling hungry`);
+          }
+          else if(this.hungerValue === this.maxValue) {
+            this.petDied();
+            this.displayResult(`${this.name} is very hungry. Feed him.`);
+          }
         }
         //increase energy
-        if (this.value < this.maxValue) {
-          this.value++;
-          this.changeWidth();
-          this.displayResult(`${this.name} is gaining energy from sleep`);
-        } else if (this.value === this.maxValue) {
-          this.getWinner();
-          this.displayResult(
-            `${this.name} has gained energy from sleep. Ready to play another game`
-          );
+        if (counter < this.maxValue) {
+          if(counter === this.value || this.value < 10) {
+            this.value++;
+            this.changeWidth();
+            this.displayResult(`${this.name} is gaining energy from sleep`);
+          }
+           else if(this.value === this.maxValue) {
+            this.getWinner();
+            this.displayResult(
+              `${this.name} has gained energy from sleep. Ready to play another game`
+            );
+          }
         }
 
         //increase boredom
-        if (this.boredom < this.maxValue) {
-          this.boredom += 0.5;
-          this.changeWidth();
-          this.displayResult(`${this.name} is bore`);
-        } else if (this.boredom === this.maxValue) {
-          this.petDied();
-          this.displayResult(`${this.name} is very bore. Let him play.`);
+        if (counter < this.maxValue) {
+
+          if(counter === this.boredom || this.boredom < 10){
+            this.boredom ++;
+            this.changeWidth();
+            this.displayResult(`${this.name} is bore`);
+          }
+          if(this.boredom === this.maxValue) {
+            this.petDied();
+            this.displayResult(`${this.name} is very bore. Let him play.`);
+          }
         }
 
-        if (this.sleepValue < this.maxValue) {
-          while (this.sleepValue > 1) {
+//decrease sleepiness
+        if (counter < this.maxValue) {
+          if (counter === this.sleepValue || this.sleepValue > 0) {
             this.sleepValue--;
           }
           this.changeWidth();
@@ -293,6 +352,8 @@ class Tamagotchi {
             `${this.name} had enough sleep.`
           );
         }
+
+        return(`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`)
 
       }, 1000);
     });
@@ -304,12 +365,13 @@ class Tamagotchi {
       document.querySelector(".img-1").classList.remove("hide");
       clearInterval(this.interval);
       document.getElementById("btn-stop").classList.add("hide");
+      document.getElementById("fbtn").disabled = false;
+      document.getElementById("pbtn").disabled = false;
     });
   }
 
   startPlay() {
     let counter = 0;
-    let cc = 0;
     const stopPlay = document.getElementById("stopPlay");
     const startPlay = document.getElementById("pbtn");
 
@@ -319,52 +381,63 @@ class Tamagotchi {
       document.querySelector(".img-4").classList.remove("hide");
       document.getElementById("pbtn").classList.add("hide");
       document.getElementById("stopPlay").classList.remove("hide");
+      document.getElementById("sbtn").disabled = true;
+      document.getElementById("fbtn").disabled = true;
 
       this.interval = setInterval(() => {
-        if (counter === 100) {
+        if (counter === 10) {
           clearInterval();
         } else {
           counter += 1;
-          this.funValue = counter;
-          this.hungerValue = counter;
-          this.value = counter;
-          this.boredom = counter;
+          // this.funValue = counter;
+          // this.value = counter;
+          // this.sleepValue = counter
         }
 
-        if (this.funValue < this.maxValue) {
+        //increase funvalue
+
+      if (counter < this.maxValue) {
+        if(counter === this.funValue || this.funValue < 10){
           this.funValue++;
           this.changeWidth();
           this.displayResult(
-            `${this.name} is enjoying the game. ${this.name} is loosing his energy. He needs food. Happy.`
-          );
-        } else if (this.funValue === this.maxValue) {
+            `${this.name} is enjoying the game. ${this.name} is loosing his energy. He needs food. Happy.`);
+        }else if (this.funValue === this.maxValue) {
           this.getWinner();
           this.displayResult(
             `${this.name} enjoyed the game. He lost his energy. Feed him.He is not bore anymore.`
           );
         }
-
+      }
+//increase hunger
         if (counter < this.maxValue) {
-          this.hungerValue++;
-          this.changeWidth();
-        } else if (this.hungerValue === this.maxValue) {
+          if(counter === this.hungerValue || this.hungerValue < 10){
+            this.hungerValue++;
+            this.changeWidth();
+         } else if (this.hungerValue === this.maxValue) {
           this.petDied();
           this.displayResult(`${this.name} is very hungry`);
         }
 
+          }
+
+//increase energy
         if (counter < this.maxValue) {
-          this.value += 0.1;
-          this.changeWidth();
-          this.displayResult(`${this.name} has loosing his energy`);
-        } else if (this.funValue === this.maxValue) {
+
+          if(counter === this.value || this.value < 10){
+            this.value ++;
+            this.changeWidth();
+            this.displayResult(`${this.name} has loosing his energy`);
+
+          } else if (this.value === this.maxValue) {
           this.getWinner();
           this.displayResult(
-            `${this.name} enjoyed the game. His strength incresed. Feed him.He is not bore anymore.`
-          );
+            `${this.name} enjoyed the game. His strength incresed. Feed him.He is not bore anymore.`);
         }
-
+      }
+//decrease boredom
         if (counter < this.maxValue) {
-          while (this.boredom > 1) {
+          if(this.boredom > 0) {
             this.boredom--;
           }
           this.changeWidth();
@@ -373,20 +446,21 @@ class Tamagotchi {
           );
         }
 
-        //increase sleepiness
+//increase sleepiness
 
-        if (this.sleepValue < this.maxValue) {
-          this.sleepValue += 0.2
+        if (counter < this.maxValue) {
+          if(this.sleepValue > 0) {
+            this.sleepValue--;
+          }
           this.changeWidth();
           this.displayResult(
-            `${this.name} is feeling sleepy.`
-          );
-        } else if (this.sleepValue === this.maxValue) {
-          this.petDied();
-          this.displayResult(
-            `${this.name} is very sleepy. Turn the light off.`
+            `${this.name} is not sleepy.`
           );
         }
+
+
+        return(`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`)
+
       }, 1000);
     });
 
@@ -396,6 +470,8 @@ class Tamagotchi {
       document.querySelector(".img-3").classList.add("hide");
       document.querySelector(".img-1").classList.remove("hide");
       document.querySelector(".img-4").classList.add("hide");
+      document.getElementById("sbtn").disabled = false;
+      document.getElementById("fbtn").disabled = false;
       clearInterval(this.interval);
     });
   }
@@ -439,7 +515,26 @@ class Tamagotchi {
       document.getElementById("stopPlay").disabled = true;
       document.getElementById("btn-stop").disabled = true;
     }
+
+    if(this.age === 30) {
+      clearInterval(this.interval);
+      this.displayResult(`${this.name} died.`);
+      document.querySelector(".img-6").classList.remove("hide");
+      document.querySelector(".img-1").classList.add("hide");
+      document.querySelector(".img-2").classList.add("hide");
+      document.querySelector(".img-3").classList.add("hide");
+      document.querySelector(".img-4").classList.add("hide");
+      document.querySelector(".light-change").classList.remove("dark-light");
+      document.getElementById("restartBtn").classList.remove("hide");
+      document.getElementById("sbtn").disabled = true;
+      document.getElementById("pbtn").disabled = true;
+      document.getElementById("fbtn").disabled = true;
+      document.getElementById("foodStop-btn").disabled = true;
+      document.getElementById("stopPlay").disabled = true;
+      document.getElementById("btn-stop").disabled = true;
+    }
   }
+
 }
 
 const charOne = new Tamagotchi("Dino")
@@ -453,7 +548,10 @@ charOne.getSleep()
 charOne.startPlay()
 
 
+
+
 console.log(charOne.getValue())
+
 
 
 
