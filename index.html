@@ -18,11 +18,22 @@
     <h1>Welcome to Tamagotchi Game</h1>
     <button id="startBtn" class="btn">Start Game</button>
     <button id="restartBtn" class="btn">Play Again</button>
+
+    <form id="" class="input-form">
+      <label for="quantity">Choose a name for your Panda:</label>
+      <input type="text" id="userInput1" class="inputUser" name="text">
+      <input type="button" onclick="charOne.getName()" value="Go" class="btn-sm">
+    </form>
+
+    <audio controls autoplay muted>
+      <source src="../assets/comedy-detective-127185.mp3" type="audio/mpeg">
+    </audio>
+
   </div>
 
 
-<div class="child-div">
-  <div class="">
+
+  <div class="child-div">
     <div class="flex-column-div">
     <div class="parentDiv">
       <div class="text">Hunger</div>
@@ -52,9 +63,12 @@
       </div>
     </div>
 
+    <div class="parentDiv">
+      <div class="text">Sleepiness</div>
+      <div class="progress">
+        <div class="progress-bar-5"></div>
+      </div>
     </div>
-
-
 
     </div>
 
@@ -65,6 +79,7 @@
       <img src="./img/pandaPlaying.png" alt="" class="img-4">
       <img src="./img/sad.png" alt="" class="img-5">
       <img src="./img/skeleton.png" alt="" class="img-6">
+      <img src="./img/winner.png" alt="" class="img-7">
     </div>
 
     <div class="container">
@@ -77,16 +92,13 @@
         <button id="stopPlay" class="btn">Stop playing</button>
       </div>
     </div>
+
     <div class="display-result">
       <div class="resultDiv"></div>
-      <div class="age-div">. The age of your pet is: <span class="age">1</span></div>
+      <div class="age-div">The age of your pet is: <span class="age">1</span></div>
     </div>
-  </div>
-
-  
-
 </div>
-
+</div>
 </div>
   <script src="js/app.js"></script>
 </body>
