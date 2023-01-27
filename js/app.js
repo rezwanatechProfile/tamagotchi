@@ -223,7 +223,7 @@ class Tamagotchi {
         //increase boredom
         if (counter < this.maxValue) {
           if(counter === this.boredom || this.boredom > 0) {
-            this.boredom --;
+            this.boredom--;
           }
           this.changeWidth();
           this.displayResult(`${this.name} is having fun eating food.`);
@@ -412,7 +412,7 @@ class Tamagotchi {
 //increase hunger
         if (counter < this.maxValue) {
           if(counter === this.hungerValue || this.hungerValue < 10){
-            this.hungerValue++;
+            this.hungerValue+=0.5;
             this.changeWidth();
          } else if (this.hungerValue === this.maxValue) {
           this.petDied();
@@ -425,7 +425,7 @@ class Tamagotchi {
         if (counter < this.maxValue) {
 
           if(counter === this.value || this.value < 10){
-            this.value ++;
+            this.value++;
             this.changeWidth();
             this.displayResult(`${this.name} has loosing his energy`);
 
@@ -437,7 +437,7 @@ class Tamagotchi {
       }
 //decrease boredom
         if (counter < this.maxValue) {
-          if(this.boredom > 0) {
+          if(counter === this.boredom || this.boredom > 0) {
             this.boredom--;
           }
           this.changeWidth();
@@ -449,7 +449,7 @@ class Tamagotchi {
 //increase sleepiness
 
         if (counter < this.maxValue) {
-          if(this.sleepValue > 0) {
+          if(counter === this.sleepValue || this.sleepValue > 0) {
             this.sleepValue--;
           }
           this.changeWidth();
