@@ -216,7 +216,7 @@ getFood() {
         //increase sleepiness
         if (counter < this.maxValue) {
           if (counter === this.sleepValue || this.sleepValue < 10) {
-            this.sleepValue += 0.8;
+            this.sleepValue ++;
             this.changeWidth();
             this.displayResult(`${this.name} is feeling sleepy.`);
           } else if (this.sleepValue === this.maxValue) {
@@ -384,7 +384,7 @@ getFood() {
         //increase hunger
         if (counter < this.maxValue) {
           if (counter === this.hungerValue || this.hungerValue < 10) {
-            this.hungerValue += 0.5;
+            this.hungerValue ++;
             this.changeWidth();
           } else if (this.hungerValue === this.maxValue) {
             this.petDied();
