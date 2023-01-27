@@ -226,7 +226,7 @@ getFood() {
             );
           }
         }
-        return `${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`;
+        return (`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`);
       }, 1000);
 
       document.querySelector(".img-1").classList.add("hide");
@@ -326,7 +326,7 @@ getFood() {
           this.displayResult(`${this.name} had enough sleep.`);
         }
 
-        return `${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`;
+        return (`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`);
       }, 1000);
     });
 
@@ -426,7 +426,7 @@ getFood() {
           this.displayResult(`${this.name} is not sleepy.`);
         }
 
-        return `${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`;
+        return (`${this.value} ${this.funValue} ${this.hungerValue} ${this.boredom} ${this.sleepValue}`);
       }, 1000);
     });
 
